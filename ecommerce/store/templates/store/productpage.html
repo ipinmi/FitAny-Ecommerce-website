@@ -1,0 +1,170 @@
+{% extends 'store/main.html' %}
+{% block title %} {{ product.name }} {% endblock %}
+<!-- Loading the static into the template then adding the link to the css file -->
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+{% block content %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li class="mr-4"><a href="/">Home</a></li>
+                <li class="mr-4" ><a href="/category/{{ product.category.id }}/{{ product.category.slug }}">{{ product.category.title }}</a></li>
+                <li class="active">{{ product.name}}</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+    <main class="mt-5 pt-4">
+        <div class="container dark-grey-text mt-5">
+
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-4">
+                    <img id=featured src="{{ product.image.url }}">
+
+                    <div id="slide-wrapper" >
+                        <img id="slideLeft" class="arrow" src="{% static 'images/arrow-left.png' %}">
+                        
+                        <div id="slider">
+                            <img class="thumbnail active" src="{{ product.image.url }}">
+                            <img class="thumbnail" src="{{ product.image.url }}">
+                            <img class="thumbnail" src="{{ product.image.url }}">
+                        </div>
+
+                        <img id="slideRight" class="arrow" src="{% static 'images/right-arrow.png' %}">
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="p-4">
+
+                        <div class="mb-3">
+                        <a href="">
+                            <span class="badge purple mr-1">Category 2</span>
+                        </a>
+                        <a href="">
+                            <span class="badge blue mr-1">New</span>
+                        </a>
+                        <a href="">
+                            <span class="badge red mr-1">Bestseller</span>
+                        </a>
+                        </div>
+                    </div>
+                    <h1>{{product.name}}</h1>
+                    <hr>
+                    <h3>${{ product.price }}</h3>
+                    <ul class="rating">
+                        <li style=" display: inline;">
+                        <i class="fas fa-star fa-sm text-primary"></i>
+                        </li>
+                        <li style=" display: inline;">
+                        <i class="fas fa-star fa-sm text-primary"></i>
+                        </li>
+                        <li style=" display: inline;">
+                        <i class="fas fa-star fa-sm text-primary"></i>
+                        </li>
+                        <li style=" display: inline;">
+                        <i class="fas fa-star fa-sm text-primary"></i>
+                        </li>
+                        <li style=" display: inline;">
+                        <i class="far fa-star fa-sm text-primary"></i>
+                        </li>
+                    </ul>
+                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                        <p>{{product.description}}</p>
+                    </div>
+
+                    <div class="table-responsive mb-2">
+                        <table class="table table-sm table-borderless">
+                        <tbody>
+                                <tr>
+                                    <td class="pl-0 pb-0 w-25">Quantity</td>
+                                    <td class="pb-0">Select size</td>
+                                </tr>
+                                <tr>
+                                    <td class="pl-0">
+                                        <div class="def-number-input number-input safari_only mb-0">
+                                            <!-- <input value=1 type="number"> -->
+                                            <!-- <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                                class="minus"></button> -->
+                                            <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                            <!-- <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                                class="plus"></button> -->
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mt-1">
+                                            <div class="form-check form-check-inline pl-0">
+                                                <input type="radio" class="form-check-input" id="small" name="materialExampleRadios"
+                                                checked>
+                                                <label class="form-check-label small text-uppercase card-link-secondary"
+                                                for="small">Small</label>
+                                            </div>
+                                            <div class="form-check form-check-inline pl-0">
+                                                <input type="radio" class="form-check-input" id="medium" name="materialExampleRadios">
+                                                <label class="form-check-label small text-uppercase card-link-secondary"
+                                                for="medium">Medium</label>
+                                            </div>
+                                            <div class="form-check form-check-inline pl-0">
+                                                <input type="radio" class="form-check-input" id="large" name="materialExampleRadios">
+                                                <label class="form-check-label small text-uppercase card-link-secondary"
+                                                for="large">Large</label>
+                                            </div>
+                                        </div>  
+                                    </td>
+                                </tr>   
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-md mr-1 mb-2">Add to WishList</button>
+                    <button type="button"  data-product="{{product.id}}" data-action="add" class="btn btn-light btn-md mr-1 mb-2 add-btn update-cart">
+                        <i class="fas fa-shopping-cart pr-2"></i>Add to cart
+                    </button>
+                    <!-- class of updatecart and a custom attrubute called products to know which product was clicked -->
+
+                </div>
+            </div>
+            <!-- <a class="btn btn-dark" href="#">Add to Cart</a> -->
+        </div>
+    </main>
+    <script type="text/javascript">
+        let thumbnails = document.getElementsByClassName('thumbnail')
+        let activeImages = document.getElementsByClassName('active')
+        for (var i=0; i < thumbnails.length; i++){
+            thumbnails[i].addEventListener('mouseover', function(){
+
+                if (activeImages.length > 0){
+                    activeImages[0].classList.remove('active')
+                }
+            
+                this.classList.add('active')
+                document.getElementById('featured').src = this.src
+            })
+
+
+        }
+
+        const buttonRight = document.getElementById('slideRight');
+        const buttonLeft = document.getElementById('slideLeft');
+
+
+        buttonRight.addEventListener('click', function(){
+            document.getElementById('slider').scrollLeft += 180;
+        })
+
+
+
+        buttonLeft.addEventListener('click', function(){
+          document.getElementById('slider').scrollLeft -= 180;
+        })
+
+    </script>
+
+{% endblock content %}
+

@@ -1,0 +1,299 @@
+{% extends 'store/main.html' %}
+<!-- Loading the static into the template then adding the link to the css file -->
+{% load static %}
+{% block content %}
+<head>
+<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/checkout/">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+<meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#563d7c">
+
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <!-- Custom styles for this template -->
+  <!-- <link href="form-validation.css" rel="stylesheet"> -->
+</head>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h4 class="mb-3">Billing address</h4>
+                <!-- left side contains an id for the form -->
+                <div class="box-element" id="form-wrapper">
+                    <form id="form" class="needs-validation" novalidate>
+                        <div class="row" id="user-info">
+                        
+                            <!-- for easier styling div wrapper around each form field -->
+                            <div class="col-md-6 mb-3">
+                                <img  id="cart-icon" src="{% static 'images/name.png' %}"> 
+                                <label for="firstName">First name</label>
+                                <input type="text" class="form-control" name="firstName" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Valid first name is required.
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <img  id="cart-icon" src="{% static 'images/name.png' %}">
+                                <label for="lastName">Last name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                Valid last name is required.
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-3" id="email-info">
+                            <img  id="cart-icon" src="{% static 'images/email.png' %}"> 
+                            <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
+                            <div class="invalid-feedback">
+                                Please enter a valid email address for shipping updates.
+                            </div>
+                        </div>
+                        
+
+                        <div id="shipping-info">
+                            <hr>
+                            <h4>Shipping Information</h4>
+                            <hr>
+                            <div class="mb-3">
+                                <img  id="cart-icon" src="{% static 'images/address.png' %}"> 
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" name="address" placeholder="1234 Main St" required>
+                                <div class="invalid-feedback">
+                                    Please enter your shipping address.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <img  id="cart-icon" src="{% static 'images/address.png' %}"> 
+                                <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+                                <input type="text" class="form-control" name="address2" placeholder="Apartment or suite">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-5 mb-3">
+                                    <img  id="cart-icon" src="{% static 'images/city.png' %}"> 
+                                    <label for="city">City</label>
+                                    <input required class="form-control" type="text" name="city" placeholder="City">
+                                    
+                                    <div class="invalid-feedback">
+                                        Please enter a valid City.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <label for="state">State</label>
+                                    <input required class="form-control" type="text" name="state" placeholder="State">
+                                    <div class="invalid-feedback">
+                                    Please provide a valid state.
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-3 mb-3">
+                                    <label for="zip">Zip</label>
+                                    <input type="text" class="form-control" name="zipcode" placeholder="100001" required>
+                                    <div class="invalid-feedback">
+                                    Zip code required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <hr class="mb-4">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="same-address">
+                            <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="save-info">
+                            <label class="custom-control-label" for="save-info">Save this information for next time</label>
+                        </div>
+                        <hr>
+                        <input id="form-button" class="btn btn-success btn-block" type= "submit" value="Continue">
+                    </form>
+                </div>
+                <!-- hidden until contant info is logged in -->
+                <br>
+                <div class="box-element hidden" id="payment-info">
+                    <small>Payment Options</small>
+                    <!-- Set up a container element for the button -->
+                    <!-- <div id="paypal-button-container"></div>
+                    <button id="make-payment">Make Payment</button> -->
+
+                    <div class="form-submit">
+                        <button type="submit" onclick="payWithPaystack()"> Pay </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+                <h4 class="mb-4">Your Cart</h4>
+                    <!-- order summary -->
+                <div class="box-element">
+                    <!-- link back to the cart page -->
+                    <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+                    <hr>
+                    <h4>Order Summary</h4>
+                    <hr>
+                    {% for item in items %}
+                    <div class="cart-row">
+                        <div style="flex:3"><img class="row-image" src="{{item.product.imageURL}}"></div>
+                        <div style="flex:3"><p>{{item.product.name}}</p></div>
+                        <div style="flex:2"><p>${{item.product.price|floatformat:2}}</p></div>
+                        <div style="flex:1"><p>x{{item.quantity}}</p></div>
+    
+                    </div>
+                    {% endfor %}
+                    <div>
+                        <h5>Items:   {{order.get_cart_items}}</h5>
+                        <h5>Total:   ${{order.get_cart_total|floatformat:2}}</h5>
+    
+                    </div>
+    
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+    
+    <script type="text/javascript">
+        var shipping = '{{order.shipping}}'
+        var total = '{{order.get_cart_total}}'
+
+        // querying the method created
+        if (shipping == 'False'){
+            // removes the shipping addresss for digital items
+            document.getElementById(shipping-info).innerHTML = ''
+        }
+        //to hide the name and email for a logged in user
+        if (user != 'AnonymousUser'){
+            document.getElementById('user-info').innerHTML = ''
+            document.getElementById('email-info').innerHTML = ''
+        }
+
+        if (shipping == 'False' && user != 'AnonymousUser'){
+            // hide the entire form 
+            document.getElementById('form-wrapper').classList.add("hidden");
+            // show payment if logged in user wants to by a digital product
+            document.getElementById('payment-info').classList.remove('hidden');
+        }
+    
+        var form = document.getElementById('form')
+        // when form is click, disallow submission
+        form.addEventListener('submit', function(e){
+            // stop the form normal activity
+            e.preventDefault()
+            console.log('Form submitted..')
+            // hide the continue button
+            document.getElementById('form-button').classList.add('hidden')
+            // show the payment column
+            document.getElementById('payment-info').classList.remove('hidden')
+        })
+        // document.getElementById('make-payment').addEventListener('click', function(e){
+        //     submitFormData()
+        // })
+        function submitFormData(){
+            console.log('Payment button clicked')
+
+            // objects to be passed to the backend
+            var userFormData = {
+                'firstName':null,
+                'lastName':null,
+                'email':null,
+                'total':total,
+            }
+
+            var shippingInfo = {
+                'address':null,
+                // 'address2':null,
+                'city':null,
+                'state':null,
+                'zipcode':null,
+            }
+
+            if(shipping != 'False'){
+                // update the entry
+                shippingInfo.address = form.address.value 
+                // shippingInfo.address2 = form.address2.value 
+                shippingInfo.city = form.city.value 
+                shippingInfo.state = form.state.value 
+                shippingInfo.zipcode = form.zipcode.value 
+            }
+
+            if(user == 'AnonymousUser'){
+                // update the entry
+                userFormData.firstName = form.firstName.value 
+                userFormData.lastName = form.lastName.value 
+                userFormData.email = form.email.value           
+            }
+
+            // console.log('Shipping Information:', shippingInfo)
+            // console.log('User Info', userFormData)
+
+            // to send the post data and return the user to the home page
+            var url = "/process_order/"
+
+            fetch(url, {
+                method: 'POST',
+                headers:{
+                    'Content-Type':'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                // sending the objects as a string
+                body: JSON.stringify({'user-form': userFormData, 'shipping': shippingInfo})
+            })
+                .then((response) => {
+                    if (response.status >= 200 && response.status <= 299) {
+                        return response.json();
+                    } else {
+                        throw Error(response.statusText);
+                    }
+                })
+                // .then((jsonResponse) => {
+                //     // do whatever you want with the JSON response
+                .then((data) => {
+                    console.log('Success:', data);
+                    alert('Transaction completed');
+
+                    // clear the cart and resetting its cookies after payment
+                    cart = {}
+                    document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+
+                    window.location.href = "{% url 'store' %}"
+                }).catch((error) => {
+                    // Handle the error
+                    console.log(error);
+                });
+        }
+    </script>
+    <script src="https://js.paystack.co/v1/inline.js"></script> 
+
+{% endblock content %}
+
+
+ 

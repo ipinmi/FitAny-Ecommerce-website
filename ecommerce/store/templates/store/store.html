@@ -1,0 +1,62 @@
+{% extends 'store/main.html' %}
+<!-- Loading the static into the template then adding the link to the css file -->
+{% load static %}
+{% block content %}
+        <!-- Layout to create multiple rows of product information -->
+    	<div class="row">
+            <!-- looop through the products  -->
+            {% for product in products %}
+            <div class="col-lg-4">
+                <!--Card-->
+                <div class="card">
+
+                    <!--Card image-->
+                    <div class="view overlay">
+                        <img src="{{product.imageURL}}" class="thumbnail card-img-top">
+                        
+                        <!-- <a href="{% url 'category_detail' product.id product.slug %}"></a> -->
+                        
+                        <a href="{% url 'product_details' product.id product.slug %}">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                    <!--Card image--> 
+    
+                    <!--Card content-->
+                    <div class="card-body text-center">
+                        <!--Category & Title-->
+                        <a href="" class="grey-text">
+                            <h5>Shirt</h5>
+                            
+                        </a>
+                        <h5>
+                            <strong>
+                                <a href="" class="dark-grey-text">{{product.name}}
+                                    <span class="badge badge-pill danger-color">NEW</span>
+                                </a>
+                            </strong>
+                        </h5>
+        
+                        <h4 class="font-weight-bold blue-text">
+                            <!-- to display the price (subjected to change for currency converter`) -->
+                            <strong>${{product.price|floatformat:2}}</strong>
+                        </h4>
+
+                        <!-- class of updatecart and a custom attrubute called products to know which product was clicked -->
+                        <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-primary add-btn update-cart">
+                        Add to Cart</button>
+        
+                    </div>
+                    <!--Card content-->
+    
+                </div>
+                <!--Card-->
+            </div>
+            {% endfor %}
+        </div>
+    
+
+{% endblock content %}
+
+
+

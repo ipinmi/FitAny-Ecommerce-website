@@ -1,0 +1,615 @@
+{% extends 'store/main.html' %}
+<!-- Loading the static into the template then adding the link to the css file -->
+{% load static %}
+{% block content %}
+  	<!--Main layout-->
+	<main>
+		<div class="container">
+  
+			<!--Grid row-->
+			<div class="row mt-5">
+	
+				<!--Grid column-->
+				<div class="col-md-4 mb-4">
+	
+					<!-- Section: Sidebar -->
+					<section>
+		
+						<!-- Section: Categories -->
+						<section>
+			
+							<h5>Subcategories</h5>
+			
+							<div class="text-muted small text-uppercase mb-5">
+								<p class="mb-4">return to <a href="#!" class="card-link-secondary"><strong>Clothing, Shoes,
+									Accessories</strong></a>
+								</p>
+								<p class="mb-3"><a href="#!" class="card-link-secondary">Dresses</a></p>
+								<p class="mb-3"><a href="#!" class="card-link-secondary">Tops, Tees & Blouses</a></p>
+								<p class="mb-3"><a href="#!" class="card-link-secondary">Sweaters</a></p>
+								<p class="mb-3"><a href="#!" class="card-link-secondary">Fashion Hoodies & Sweatshirts</a></p>
+								<p class="mb-3"><a href="#!" class="card-link-secondary">Jeans</a></p>
+							</div>
+			
+						</section>
+						<!-- Section: Categories -->
+			
+						<!-- Section: Filters -->
+						<section class="filters">
+							<h5>Filters</h5>
+			
+							<!-- Section: Condition -->
+							<section class="mb-4">
+								<h6 class="font-weight-bold mb-3">Condition</h6>
+				
+								<div class="form-check pl-0 mb-3">
+									<input type="checkbox" class="form-check-input filled-in" id="new"/>
+									<label
+									class="form-check-label small text-uppercase card-link-secondary"
+									for="new" >New</label>
+								</div>
+								<div class="form-check pl-0 mb-3">
+									<input
+									type="checkbox" class="form-check-input filled-in" id="used" />
+									<label
+									class="form-check-label small text-uppercase card-link-secondary"
+									for="used"
+									>Used</label
+									>
+								</div>
+								<div class="form-check pl-0 mb-3">
+									<input
+									type="checkbox"
+									class="form-check-input filled-in"
+									id="collectible"
+									/>
+									<label
+									class="form-check-label small text-uppercase card-link-secondary"
+									for="collectible"
+									>Collectible</label
+									>
+								</div>
+								<div class="form-check pl-0 mb-3 pb-1">
+									<input type="checkbox" class="form-check-input filled-in" id="renewed"/>
+									<label class="form-check-label small text-uppercase card-link-secondary"
+									for="renewed">Renewed</label>
+								</div>
+							</section>
+							<!-- Section: Condition -->
+			
+							<!-- Section: Average -->
+							<section>
+								<h6 class="font-weight-bold mb-3">Avg. Customer Review</h6>
+				
+								<label for="customer-rating-4" class="z-depth-0 py-0">
+									<ul class="rating waves-light mb-0">
+										<li style=" display: inline;">
+											<i class="fas fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="fas fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="fas fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="fas fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="far fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<p class="small text-uppercase card-link-secondary px-2">
+											& Up
+											</p>
+										</li>
+									</ul>
+						
+								</label>
+								<br />
+								<label for="customer-rating-3" class="z-depth-0 py-0">
+									<ul class="rating waves-light mb-0">
+										<input
+										id="customer-rating-4"
+										class="filter-option"
+										type="checkbox"
+										/>
+										<li style=" display: inline;">
+											<i class="fas fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="fas fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="fas fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="far fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="far fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<p class="small text-uppercase card-link-secondary px-2">
+											& Up
+											</p>
+										</li>
+									</ul>
+								
+								</label>
+								<br />
+								<label for="customer-rating-2" class="z-depth-0 py-0">
+									<ul class="rating waves-light mb-0">
+										<input
+										id="customer-rating-2"
+										class="filter-option"
+										type="checkbox"
+										/>
+										<li style=" display: inline;">
+											<i class="fas fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="fas fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="far fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="far fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="far fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<p class="small text-uppercase card-link-secondary px-2">
+											& Up
+											</p>
+										</li>
+									</ul>
+									
+								</label>
+								<br />
+								<label for="customer-rating-1" class="z-depth-0 py-0">
+									<ul class="rating waves-light mb-0">
+										<input
+										id="customer-rating-1"
+										class="filter-option"
+										type="checkbox"
+										/>
+										<li style=" display: inline;">
+											<i class="fas fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="far fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="far fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="far fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<i class="far fa-star fa-sm text-primary"></i>
+										</li>
+										<li style=" display: inline;">
+											<p class="small text-uppercase card-link-secondary px-2">
+											& Up
+											</p>
+										</li>
+									</ul>
+									
+								</label>
+							</section>
+							<!-- Section: Average -->
+			
+							<!-- Section: Price -->
+							<section class="mb-4">
+								<h6 class="font-weight-bold mb-3">Price</h6>
+				
+								<div class="form-check pl-0 mb-3">
+									<input
+									type="radio"
+									class="form-check-input"
+									id="under25"
+									name="materialExampleRadios"
+									/>
+									<label
+									class="form-check-label small text-uppercase card-link-secondary"
+									for="under25"
+									>Under $25</label
+									>
+								</div>
+								<div class="form-check pl-0 mb-3">
+									<input
+									type="radio"
+									class="form-check-input"
+									id="2550"
+									name="materialExampleRadios"
+									/>
+									<label
+									class="form-check-label small text-uppercase card-link-secondary"
+									for="2550"
+									>$25 to $50</label
+									>
+								</div>
+								<div class="form-check pl-0 mb-3">
+									<input
+									type="radio"
+									class="form-check-input"
+									id="50100"
+									name="materialExampleRadios"
+									/>
+									<label
+									class="form-check-label small text-uppercase card-link-secondary"
+									for="50100"
+									>$50 to $100</label
+									>
+								</div>
+								<div class="form-check pl-0 mb-3">
+									<input
+									type="radio"
+									class="form-check-input"
+									id="100200"
+									name="materialExampleRadios"
+									/>
+									<label
+									class="form-check-label small text-uppercase card-link-secondary"
+									for="100200"
+									>$100 to $200</label
+									>
+								</div>
+								<div class="form-check pl-0 mb-3">
+									<input
+									class="form-check-input"
+									id="200above"
+									name="materialExampleRadios"
+									/>
+									<label
+									class="form-check-label small text-uppercase card-link-secondary"
+									for="200above"
+									>$200 & Above</label
+									>
+								</div>
+							</section>
+							<!-- Section: Price -->
+							<!-- Section: Price version 2 -->
+							<section class="mb-4">
+
+								<h6 class="font-weight-bold mb-3">Price</h6>
+						
+								<div class="slider-price d-flex align-items-center my-4">
+									<span class="font-weight-normal small text-muted mr-2">$0</span>
+									<form class="multi-range-field w-100 mb-1">
+										<input id="multi" class="multi-range" type="range" />
+									</form>
+									<span class="font-weight-normal small text-muted ml-2">$100</span>
+								</div>
+						
+							</section>
+							<!-- Section: Price version 2 -->
+							<!-- Section: Size -->
+							<section class="mb-4">
+								<h6 class="font-weight-bold mb-3">Size</h6>
+				
+								<div class="form-check pl-0 mb-3">
+									<input
+									type="checkbox"
+									class="form-check-input filled-in"
+									id="34"
+									/>
+									<label
+									class="form-check-label small text-uppercase card-link-secondary"
+									for="34"
+									>34</label
+									>
+								</div>
+								<div class="form-check pl-0 mb-3">
+									<input
+									type="checkbox"
+									class="form-check-input filled-in"
+									id="36"
+									/>
+									<label
+									class="form-check-label small text-uppercase card-link-secondary"
+									for="36"
+									>36</label
+									>
+								</div>
+								<div class="form-check pl-0 mb-3">
+									<input
+									type="checkbox"
+									class="form-check-input filled-in"
+									id="38"
+									/>
+									<label
+									class="form-check-label small text-uppercase card-link-secondary"
+									for="38"
+									>38</label
+									>
+								</div>
+								<div class="form-check pl-0 mb-3">
+									<input
+									type="checkbox"
+									class="form-check-input filled-in"
+									id="40"
+									/>
+									<label
+									class="form-check-label small text-uppercase card-link-secondary"
+									for="40"
+									>40</label
+									>
+								</div>
+									<a
+										class="btn btn-link text-muted p-0"
+										data-toggle="collapse"
+										href="#collapseExample"
+										aria-expanded="false"
+										aria-controls="collapseExample"
+									>
+										More
+									</a>
+								<div class="collapse pt-3" id="collapseExample">
+									<div class="form-check pl-0 mb-3">
+										<input
+											type="checkbox"
+											class="form-check-input filled-in"
+											id="42"
+										/>
+										<label
+											class="form-check-label small text-uppercase card-link-secondary"
+											for="42"
+											>42</label
+										>
+									</div>
+									<div class="form-check pl-0 mb-3">
+										<input
+											type="checkbox"
+											class="form-check-input filled-in"
+											id="44"
+										/>
+										<label
+											class="form-check-label small text-uppercase card-link-secondary"
+											for="44"
+											>44</label
+										>
+									</div>
+									<div class="form-check pl-0 mb-3">
+									<input
+											type="checkbox"
+											class="form-check-input filled-in"
+											id="46"
+										/>
+										<label
+											class="form-check-label small text-uppercase card-link-secondary"
+											for="46"
+											>46</label
+										>
+									</div>
+									<div class="form-check pl-0 mb-3">
+										<input
+											type="checkbox"
+											class="form-check-input filled-in"
+											id="50"
+										/>
+										<label
+											class="form-check-label small text-uppercase card-link-secondary"
+											for="50">50
+										</label>
+									</div>
+								</div>
+							</section>
+							<!-- Section: Size -->
+			
+							<!-- Section: Color -->
+							<section class="mb-4">
+								<h6 class="font-weight-bold mb-3">Color</h6>
+				
+								<div class="btn-group btn-group-toggle btn-color-group d-block mt-n2 ml-n2" data-toggle="buttons">
+									<label
+									for="color-1"
+									class="btn rounded-circle white border-inset-grey p-3 m-2"
+									>
+									<input
+										id="color-1"
+										class="filter-option"
+										type="checkbox"
+									/>
+									</label>
+									<label for="color-2" class="btn rounded-circle grey p-3 m-2">
+									<input
+										id="color-2"
+										class="filter-option"
+										type="checkbox"
+									/>
+									</label>
+									<label for="color-3" class="btn rounded-circle black p-3 m-2">
+									<input
+										id="color-3"
+										class="filter-option"
+										type="checkbox"
+									/>
+									</label>
+									<label for="color-4" class="btn rounded-circle green p-3 m-2">
+									<input
+										id="color-4"
+										class="filter-option"
+										type="checkbox"
+									/>
+									</label>
+									<label for="color-5" class="btn rounded-circle blue p-3 m-2">
+									<input
+										id="color-5"
+										class="filter-option"
+										type="checkbox"
+									/>
+									</label>
+									<label for="color-6" class="btn rounded-circle purple p-3 m-2">
+									<input
+										id="color-6"
+										class="filter-option"
+										type="checkbox"
+									/>
+									</label>
+									<label for="color-7" class="btn rounded-circle yellow p-3 m-2">
+									<input
+										id="color-7"
+										class="filter-option"
+										type="checkbox"
+									/>
+									</label>
+									<label for="color-8" class="btn rounded-circle indigo p-3 m-2">
+									<input
+										id="color-8"
+										class="filter-option"
+										type="checkbox"
+									/>
+									</label>
+									<label for="color-9" class="btn rounded-circle red p-3 m-2">
+									<input
+										id="color-9"
+										class="filter-option"
+										type="checkbox"
+									/>
+									</label>
+									<label for="color-10" class="btn rounded-circle orange p-3 m-2">
+									<input
+										id="color-10"
+										class="filter-option"
+										type="checkbox"
+									/>
+									</label>
+								</div>
+							</section>
+							<!-- Section: Color -->
+						</section>
+						<!-- Section: Filters -->
+		
+					</section>
+					<!-- Section: Sidebar -->
+			
+				</div>
+				<!--Grid column-->
+		
+				<!--Grid column-->
+				<div class="col-md-8 mb-4">
+		
+					<!-- Section: Block Content -->
+					<section class="mb-3">
+		
+					<div class="row d-flex justify-content-around align-items-center">
+						<div class="col-12 col-md-3 text-center text-md-left">
+						<a href="#!" class="text-reset"><i class="fas fa-th-list fa-lg mr-1"></i></a href="#!">
+						<a href="#!" class="text-reset"><i class="fas fa-th-large fa-lg"></i></a href="#!">
+						</div>
+						<div class="col-12 col-md-5">
+						<div class="d-flex flex-wrap">
+							<!-- sorting -->
+							<div class="select-outline position-relative w-100">
+							<select id="sort" class="mdb-select md-form md-outline">
+								<option value="1">Best rating</option>
+								<option value="2">Lowest price first</option>
+								<option value="3">Highest price first</option>
+							</select>
+							<label>Sort</label>
+							</div>
+							<!-- sorting -->
+						</div>
+						</div>
+						<div class="col-12 col-md-4 text-center">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination pagination-circle justify-content-center float-md-right mb-0">
+							<li class="page-item"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
+							<li class="page-item active"><a class="page-link">1</a></li>
+							<li class="page-item"><a class="page-link">2</a></li>
+							<li class="page-item"><a class="page-link">3</a></li>
+							<li class="page-item"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+							</ul>
+						</nav>
+						</div>
+					</div>
+		
+					</section>
+					<!-- Section: Block Content -->
+
+					<!--Section: Block Content-->
+		
+					<section>
+		
+						<!-- Loader -->
+			
+						<!-- Loader -->
+			
+						<!-- Grid row -->
+						<div class="row" id="products">
+			
+							
+						</div>
+						<!-- Grid row -->
+		
+					</section>
+					<!--Section: Block Content-->
+		
+					<!-- Section: Block Content -->
+					<section>
+		
+					<div class="row d-flex justify-content-around align-items-center">
+						<div class="col-12 col-md-3 text-center text-md-left">
+						<a href="#!" class="text-reset"><i class="fas fa-th-list fa-lg mr-1"></i></a href="#!">
+						<a href="#!" class="text-reset"><i class="fas fa-th-large fa-lg"></i></a href="#!">
+						</div>
+						<div class="col-12 col-md-5">
+						<div class="d-flex flex-wrap">
+							<div class="select-outline position-relative w-100">
+							<select class="mdb-select md-outline md-form" searchable="Search here..">
+								<option value="" disabled selected>Choose category</option>
+								<option value="1">Category 1</option>
+								<option value="2">Category 2</option>
+								<option value="3">Category 3</option>
+								<option value="4">Category 4</option>
+								<option value="5">Category 5</option>
+							</select>
+							<label>Label example</label>
+							<button class="btn-save btn btn-primary btn-sm mt-2">Save</button>
+							</div>
+						</div>
+						</div>
+						<div class="col-12 col-md-4 text-center">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination pagination-circle justify-content-center float-md-right mb-0">
+							<li class="page-item"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
+							<li class="page-item active"><a class="page-link">1</a></li>
+							<li class="page-item"><a class="page-link">2</a></li>
+							<li class="page-item"><a class="page-link">3</a></li>
+							<li class="page-item"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+							</ul>
+						</nav>
+						</div>
+					</div>
+	
+					</section>
+					<!-- Section: Block Content -->
+	
+				</div>
+				<!--Grid column-->
+	
+			</div>
+			<!--Grid row-->
+  
+		</div>
+	</main>
+	<!--Main layout-->
+  
+
+  </body>
+	<script>
+		$('#multi').mdbRange({
+			single: {
+			active: true,
+			multi: {
+				active: true,
+				rangeLength: 1
+			},
+			}
+		});
+	</script>
+{% endblock content %}

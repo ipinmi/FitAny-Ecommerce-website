@@ -1,0 +1,72 @@
+<!-- Loading the static into the template then adding the link to the css file -->
+{% load static %}
+{% block foot %} 
+    <!-- Footer -->
+    <footer class="page-footer font-small special-color-dark pt-4 mt-4">
+
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-center">
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-md-12 mt-md-0 mt-3">
+                    <section class="ui-container">
+                        <div class="text-center">
+                            <h3 class="u-font-weight-bold white-text"> FitAny is not your typical thrift store.</h3>
+                        </div>
+                    </section>
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none pb-3">
+                <!-- Grid row -->
+            </div>    
+
+        </div>
+        <!-- Footer Links -->
+        <div>
+                    <!-- Social buttons -->
+            <ul class="list-unstyled list-inline text-center">
+            <li class="list-inline-item">
+                <span style="color: #4267B2;">
+                <a class="btn-floating btn-fb mx-1">
+                    <i class="fab fa-facebook-f fa-2x"> </i>
+                </a>
+                </span>
+            </li>
+            <li class="list-inline-item">
+                <span style="color: #1DA1F2;">
+                <a class="btn-floating btn-tw mx-1">
+                    <i class="fab fa-twitter fa-2x"> </i>
+                </a>
+                </span>
+            </li>
+            <li class="list-inline-item">
+                <span style="color: #DB4437;">
+                <a class="btn-floating btn-gplus mx-1">
+                    <i class="fab fa-google-plus-g fa-2x"> </i>
+                </a>
+                </span> 
+            </li>
+            
+            <li class="list-inline-item">
+                <span style="color: whitesmoke ">
+                <a class="btn-floating mx-1">
+                    <i class="fab fa-instagram fa-2x"></i>
+                </a>
+                </span>  
+            </li>
+            </ul>
+            <!-- Social buttons -->
+        </div>
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="#"> FitAny</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+        <!-- Footer -->
+{% endblock %}

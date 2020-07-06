@@ -1,0 +1,137 @@
+<!-- Loading the static into the template then adding the link to the css file -->
+{% load static %}
+{% block styles %}
+    <style>
+        .hello-msg{
+        font-size: 18px;
+        color: #fff;
+        margin-right: 20px;
+        }
+    </style>
+{% endblock %}
+{% block navbar %} 
+    <!-- navbar from bootstrap  -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">FitAny</a> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"> 
+                    <a class="font-weight-bold nav-link" href="{% url 'store' %}">Store </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sell</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pick-Up</a>
+                </li>
+
+                
+                <li class="nav-item dropdown">
+                    
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Categories
+                    </a>
+                    {% load mptt_tags %}
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        {% recursetree category %}
+                        <li class="dropdown-submenu"><a href="/category/{{ node.id }}/{{ node.slug }}"  {% if not node.is_leaf_node %} class="dropdown-item dropdown-toggle" {% endif %} >{{ node.title }} </a>
+                            {% if not node.is_leaf_node %}
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">{{ children }}</a></li>
+                
+                            </ul>
+                            {% endif %}
+                        </li>    
+                        {% endrecursetree %}
+                    
+                    </ul>    
+                </li>    
+            
+            </ul>    
+            
+            <!-- Links for search -->
+            <form class="form-inline">
+                <div class="md-form my-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                </div>
+            </form>
+            
+
+                
+                {% if user.id is not None %}
+                    <!-- <div class="header-btns-icon">
+                        <img src="{{ request.session.userimage }}" style="height: 40px; border-radius: 30%">
+                    </div> -->
+                    <div class="mr-4">
+                        <span><strong class=" white-text">Hello, {{request.user}}</strong></span>
+                    </div>
+                
+                    <span ><a  class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
+                {% else %}
+                <div class="form-inline my-2 my-lg-0">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><p class="pr-2 pt-3 navbar-text">Already have an account?</p></li>
+                    </ul>    
+                <a href="{% url 'login' %}"class="btn btn-info">Login</a>  <a href="{% url 'register' %}"class="btn btn-info">Sign Up</a> 
+                {% endif %}
+        
+                <a href="{% url 'cart' %}">
+                        <img  id="cart-icon" src="{% static 'images/cart.png' %}"> 
+                </a>
+                <p id="cart-total">{{cartItems}}</p>
+                
+
+            </div>
+        </div>
+        
+    </nav>
+    <script type="text/javascript">
+   
+        $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+            if (!$(this).next().hasClass('show')) {
+                $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+            }
+            var $subMenu = $(this).next(".dropdown-menu");
+            $subMenu.toggleClass('show');
+
+
+            $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+                $('.dropdown-submenu .show').removeClass("show");
+            });
+
+
+            return false;
+        });
+             // document.ready(function() {
+        // // executes when HTML-Document is loaded and DOM is ready
+
+        //     // breakpoint and up  
+        //     window.resize(function(){
+        //         if (window.width() >= 980){	
+
+        //             // when you hover a toggle show its dropdown menu
+        //             ".navbar .dropdown-toggle".hover(function () {
+        //                 this.parent().toggleClass("show");
+        //                 this.parent().find(".dropdown-menu").toggleClass("show"); 
+        //             });
+
+        //                 // hide the menu when the mouse leaves the dropdown
+        //             ".navbar .dropdown-menu".mouseleave(function() {
+        //                 this.removeClass("show");  
+        //             });
+                
+        //                 // do something here
+        //         }	
+        //     });  
+        
+        
+
+        // // document ready  
+        // });
+    </script>
+{% endblock %}       
+
