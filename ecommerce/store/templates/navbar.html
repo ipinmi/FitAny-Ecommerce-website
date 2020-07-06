@@ -52,13 +52,37 @@
                 </li>    
             
             </ul>    
-            
-            <!-- Links for search -->
-            <form class="form-inline">
-                <div class="md-form my-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                </div>
-            </form>
+
+            <div class="header-search">
+                <!-- Links for search -->
+                <form action="/search/" method="post" class="form-inline">
+                    {% csrf_token %}
+                    <div class="md-form my-0">
+                        <input id="query" name="query" class="input search-input form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                        <select name="catid"  class="input search-categories">
+                            <option value="0">All Categories</option>
+                            {% load mptt_tags %}
+
+                            {% recursetree category %}
+                                {% if node.is_leaf_node %}
+                                    <option value="{{ node.id }}">{{ node.title }}</option>
+                                {% endif %}
+                                {% if not node.is_leaf_node %}
+                                    <optgroup label="{{ node.title }}">
+                                        {{ children }}
+                                    </optgroup>
+                                {% endif %}
+                            {% endrecursetree %}
+                        </select>
+                        <button class="search-btn"><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
+                <!-- Search -->
+            </div>
+                
+                    
+                    
+
             
 
                 
@@ -76,16 +100,14 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><p class="pr-2 pt-3 navbar-text">Already have an account?</p></li>
                     </ul>    
-                <a href="{% url 'login' %}"class="btn btn-info">Login</a>  <a href="{% url 'register' %}"class="btn btn-info">Sign Up</a> 
+                    <a href="{% url 'login' %}"class="btn btn-info">Login</a>  <a href="{% url 'register' %}"class="btn btn-info">Sign Up</a> 
                 {% endif %}
         
-                <a href="{% url 'cart' %}">
-                        <img  id="cart-icon" src="{% static 'images/cart.png' %}"> 
-                </a>
-                <p id="cart-total">{{cartItems}}</p>
-                
-
-            </div>
+                    <a href="{% url 'cart' %}">
+                            <img  id="cart-icon" src="{% static 'images/cart.png' %}"> 
+                    </a>
+                    <p id="cart-total">{{cartItems}}</p>
+                </div>
         </div>
         
     </nav>

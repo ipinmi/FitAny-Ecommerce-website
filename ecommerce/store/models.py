@@ -95,14 +95,14 @@ class ProductImage(models.Model):
 	def __str__(self):
 		return self.name
 
-	@property
-	def imageURL(self):
-		try:
-			url = self.prodimage.url
-		except:
-			url = ''
-		print('URL:', url)
-		return url
+	# @property
+	# def imageURL(self):
+	# 	try:
+	# 		url = self.prodimage.url
+	# 	except:
+	# 		url = ''
+	# 	print('URL:', url)
+	# 	return url
 
 
 #order model

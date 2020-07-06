@@ -1,7 +1,18 @@
 {% extends 'store/main.html' %}
+{% block title %}{{ catdata.title }} {% endblock %}
 <!-- Loading the static into the template then adding the link to the css file -->
 {% load static %}
 {% block content %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li class="mr-4"><a href="/">Home</a></li>
+				<li class="active">{{ catdata.title }} </li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
   	<!--Main layout-->
 	<main>
 		<div class="container">
@@ -534,15 +545,51 @@
 					<!--Section: Block Content-->
 		
 					<section>
-		
-						<!-- Loader -->
-			
-						<!-- Loader -->
-			
 						<!-- Grid row -->
 						<div class="row" id="products">
-			
-							
+							{% for product in products %}
+							<div class="col-lg-4">
+								<!--Card-->
+								<div class="card">
+
+									<!--Card image-->
+									<div class="view overlay">
+										<img src="{{product.imageURL}}" class="thumbnail card-img-top">
+										
+										<!-- <a href="{% url 'category_detail' product.id product.slug %}"></a> -->
+										
+										<a href="{% url 'product_details' product.id product.slug %}">
+											<div class="mask rgba-white-slight"></div>
+										</a>
+									</div>
+									<!--Card image--> 
+					
+									<!--Card content-->
+									<div class="card-body text-center">
+										<!--Category & Title-->
+										<a href="" class="grey-text">
+											<h5>Shirt</h5>
+											
+										</a>
+										<h5>
+											<strong>
+												<a href="" class="dark-grey-text">{{product.name}}
+													<span class="badge badge-pill danger-color">NEW</span>
+												</a>
+											</strong>
+										</h5>
+						
+										<h4 class="font-weight-bold blue-text">
+											<!-- to display the price (subjected to change for currency converter`) -->
+											<strong>${{product.price|floatformat:2}}</strong>
+										</h4>
+									</div>
+									<!--Card content-->
+					
+								</div>
+								<!--Card-->
+							</div>
+							{% endfor %}
 						</div>
 						<!-- Grid row -->
 		

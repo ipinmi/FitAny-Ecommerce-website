@@ -1,0 +1,178 @@
+{% extends 'store/main.html' %}
+{% block title %} {{ query }} results {% endblock %}
+<!-- Loading the static into the template then adding the link to the css file -->
+{% load static %}
+{% block content %}
+    <!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+				<li class="active">{{ query }} results</li>
+			</ul>
+		</div>
+	</div>
+    <!-- /BREADCRUMB -->
+    <main>
+		<div class="container">
+  
+			<!--Grid row-->
+			<div class="row mt-5">
+		
+				<!--Grid column-->
+				<div class="col-md-12 mb-4">
+		
+					<!-- Section: Block Content -->
+					<section class="mb-3">
+		
+					<div class="row d-flex justify-content-around align-items-center">
+						<div class="col-12 col-md-3 text-center text-md-left">
+						<a href="#!" class="text-reset"><i class="fas fa-th-list fa-lg mr-1"></i></a href="#!">
+						<a href="#!" class="text-reset"><i class="fas fa-th-large fa-lg"></i></a href="#!">
+						</div>
+						<div class="col-12 col-md-5">
+						<div class="d-flex flex-wrap">
+							<!-- sorting -->
+							<div class="select-outline position-relative w-100">
+							<select id="sort" class="mdb-select md-form md-outline">
+								<option value="1">Best rating</option>
+								<option value="2">Lowest price first</option>
+								<option value="3">Highest price first</option>
+							</select>
+							<label>Sort</label>
+							</div>
+							<!-- sorting -->
+						</div>
+						</div>
+						<div class="col-12 col-md-4 text-center">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination pagination-circle justify-content-center float-md-right mb-0">
+							<li class="page-item"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
+							<li class="page-item active"><a class="page-link">1</a></li>
+							<li class="page-item"><a class="page-link">2</a></li>
+							<li class="page-item"><a class="page-link">3</a></li>
+							<li class="page-item"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+							</ul>
+						</nav>
+						</div>
+					</div>
+		
+					</section>
+					<!-- Section: Block Content -->
+
+					<!--Section: Block Content-->
+		
+					<section>
+						<!-- Grid row -->
+						<div class="row" id="products">
+							{% for product in products %}
+							<div class="col-lg-4">
+								<!--Card-->
+								<div class="card">
+
+									<!--Card image-->
+									<div class="view overlay">
+										<img src="{{product.imageURL}}" class="thumbnail card-img-top">
+										
+										<!-- <a href="{% url 'category_detail' product.id product.slug %}"></a> -->
+										
+										<a href="{% url 'product_details' product.id product.slug %}">
+											<div class="mask rgba-white-slight"></div>
+										</a>
+									</div>
+									<!--Card image--> 
+					
+									<!--Card content-->
+									<div class="card-body text-center">
+										<!--Category & Title-->
+										<a href="" class="grey-text">
+											<h5>Shirt</h5>
+											
+										</a>
+										<h5>
+											<strong>
+												<a href="" class="dark-grey-text">{{product.name}}
+													<span class="badge badge-pill danger-color">NEW</span>
+												</a>
+											</strong>
+										</h5>
+						
+										<h4 class="font-weight-bold blue-text">
+											<!-- to display the price (subjected to change for currency converter`) -->
+											<strong>${{product.price|floatformat:2}}</strong>
+										</h4>
+									</div>
+									<!--Card content-->
+					
+								</div>
+								<!--Card-->
+							</div>
+							{% endfor %}
+						</div>
+						<!-- Grid row -->
+		
+					</section>
+					<!--Section: Block Content-->
+		
+					<!-- Section: Block Content -->
+					<section>
+		
+					<div class="row d-flex justify-content-around align-items-center">
+						<div class="col-12 col-md-3 text-center text-md-left">
+						<a href="#!" class="text-reset"><i class="fas fa-th-list fa-lg mr-1"></i></a href="#!">
+						<a href="#!" class="text-reset"><i class="fas fa-th-large fa-lg"></i></a href="#!">
+						</div>
+						<div class="col-12 col-md-5">
+						<div class="d-flex flex-wrap">
+							<div class="select-outline position-relative w-100">
+							<select class="mdb-select md-outline md-form" searchable="Search here..">
+								<option value="" disabled selected>Choose category</option>
+								<option value="1">Category 1</option>
+								<option value="2">Category 2</option>
+								<option value="3">Category 3</option>
+								<option value="4">Category 4</option>
+								<option value="5">Category 5</option>
+							</select>
+							<label>Label example</label>
+							<button class="btn-save btn btn-primary btn-sm mt-2">Save</button>
+							</div>
+						</div>
+						</div>
+						<div class="col-12 col-md-4 text-center">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination pagination-circle justify-content-center float-md-right mb-0">
+							<li class="page-item"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
+							<li class="page-item active"><a class="page-link">1</a></li>
+							<li class="page-item"><a class="page-link">2</a></li>
+							<li class="page-item"><a class="page-link">3</a></li>
+							<li class="page-item"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+							</ul>
+						</nav>
+						</div>
+					</div>
+	
+					</section>
+					<!-- Section: Block Content -->
+	
+				</div>
+				<!--Grid column-->
+	
+			</div>
+			<!--Grid row-->
+  
+		</div>
+	</main>
+	<!--Main layout-->
+  
+	<script>
+		$('#multi').mdbRange({
+			single: {
+			active: true,
+			multi: {
+				active: true,
+				rangeLength: 1
+			},
+			}
+		});
+	</script>
+{% endblock content %}

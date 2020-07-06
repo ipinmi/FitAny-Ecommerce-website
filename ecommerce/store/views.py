@@ -1,9 +1,11 @@
-from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse, request
+from django.shortcuts import render 
+from django.http import JsonResponse, HttpResponse, request, HttpResponseRedirect
+from django.contrib.auth.forms import UserCreationForm
 import json
 import datetime 
 from .models import *
 from users.models import *
+from store.forms import SearchForm
 from .utils import cookieCart, cartData, guestOrder
 # Create your views here.
 #rendering templates created
@@ -32,12 +34,31 @@ def category_products(request, id, slug):
     data = cartData(request)
     cartItems = data['cartItems']
     category = Category.objects.all()
+    catdata = Category.objects.get(pk=id)
     products = Product.objects.filter(category_id=id)
 
-    context = {'cartItems': cartItems, 'products':products, 'category':category}
+    context = {'cartItems': cartItems, 'products':products, 'category':category, 'catdata':catdata}
     
     return render(request, 'store/category_products.html', context)
-    
+
+# search products from navbar
+def search(request):
+    if request.method == 'POST': # check post
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            query = form.cleaned_data['query'] # get form input data
+            catid = form.cleaned_data['catid']
+            if catid==0:
+                products=Product.objects.filter(title__icontains=query)  #SELECT * FROM product WHERE title LIKE '%query%'
+            else:
+                products = Product.objects.filter(title__icontains=query,category_id=catid)
+
+            category = Category.objects.all()
+            context = {'products': products, 'query':query,
+                       'category': category }
+            return render(request, 'search_products.html', context)
+
+    return HttpResponseRedirect('/')
 
 def cart(request):
 
