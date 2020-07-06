@@ -163,14 +163,14 @@
                     <div class="cart-row">
                         <div style="flex:3"><img class="row-image" src="{{item.product.imageURL}}"></div>
                         <div style="flex:3"><p>{{item.product.name}}</p></div>
-                        <div style="flex:2"><p>${{item.product.price|floatformat:2}}</p></div>
+                        <div style="flex:2"><p>N{{item.product.price|floatformat:2}}</p></div>
                         <div style="flex:1"><p>x{{item.quantity}}</p></div>
     
                     </div>
                     {% endfor %}
                     <div>
                         <h5>Items:   {{order.get_cart_items}}</h5>
-                        <h5>Total:   ${{order.get_cart_total|floatformat:2}}</h5>
+                        <h5>Total:   N{{order.get_cart_total|floatformat:2}}</h5>
     
                     </div>
     
