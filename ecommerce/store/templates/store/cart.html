@@ -1,4 +1,5 @@
 {% extends 'store/main.html' %}
+{% load currency %}
 <!-- Loading the static into the template then adding the link to the css file -->
 {% load static %}
 {% block content %}
@@ -12,7 +13,8 @@
                         <table class="table">
                             <tr>
                                 <th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
-                                <th><h5>Total:<strong> N{{order.get_cart_total|floatformat:2}}</strong></h5></th>
+                                <th><h5>Total:<strong> {{order.get_cart_total|currency:request.session.currency|floatformat:2}} {{ request.session.currency }}</strong></h5></th>
+                                    
                                 <th>
                                     <a style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">
                                         Checkout Items</a>
@@ -38,7 +40,7 @@
                             <div class="cart-row">
                                 <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
                                 <div style="flex:2"><p>{{item.product.name}}</p></div>
-					            <div style="flex:2"><p>N{{item.product.price|floatformat:2}}</p></div>
+					            <div style="flex:2"><p>{{item.product.price|currency:request.session.currency|floatformat:2}} {{ request.session.currency }}</p></div>
                                 <div style="flex:1">
                                     <p class="quantity">{{item.quantity}}</p>
                                     <div class="quantity">
@@ -47,7 +49,7 @@
                                         <img data-product={{item.product.id}} data-action="remove"  class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}" alt="arrowdown"> 
                                     </div>
                                 </div>
-                                <div style="flex:1">N{{item.get_total|floatformat:2}}</div>
+                                <div style="flex:1">{{item.get_total|currency:request.session.currency|floatformat:2}} {{ request.session.currency }}</div>
                             </div>
                             {% endfor %}
                         </div>

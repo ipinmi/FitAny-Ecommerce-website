@@ -14,6 +14,8 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('category/<int:id>/<slug:slug>', views.category_products, name='category_detail'),
     path('product/<int:id>/<slug:slug>/', views.productpage, name='product_details'),
+    path('selectcurrency', views.selectcurrency, name='selectcurrency'),
+    # path('savelangcur', views.savelangcur, name='savelangcur'),
     
 
     path('update_item/', views.updateItem, name='update_item'),

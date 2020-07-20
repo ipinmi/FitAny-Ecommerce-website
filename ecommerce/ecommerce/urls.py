@@ -30,9 +30,10 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('accounts/', include('allauth.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('currencies/', include('currencies.urls')),
 
 
-    
+
     path('register/', UsersViews.registerPage, name="register"),
 	path('login/', UsersViews.loginPage, name="login"),  
     path('logout/', UsersViews.logoutUser, name="logout"),

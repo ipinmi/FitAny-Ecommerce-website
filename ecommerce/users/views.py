@@ -10,10 +10,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 # Create your views here.
-from users.models import *
-from store.models import *
-from users.forms import  CreateUserForm
-from .decorators import unauthenticated_user, allowed_users, admin_only
+from store.models import Category, Customer
+from .models import UserProfile
+from users.forms import CreateUserForm
+from .decorators import unauthenticated_user
 
 def index(request):
 	return HttpResponse('user')
@@ -24,16 +24,9 @@ def registerPage(request):
 	if request.method == 'POST':
 		form = CreateUserForm(request.POST)
 		if form.is_valid():
-			form.save()
-			user = form.cleaned_data.get('username')
+			user = form.save()
+			username = form.cleaned_data.get('username')
 
-			# group = Group.objects.get(name='customer')
-			# user.groups.add(group)
-			# #Added username after video because of error returning customer name if not added
-			# Customer.objects.create(
-			# 	user=user,
-			# 	name=user.username,
-			# )
 			messages.success(request, 'Account was created for ' + user)
 
 			return redirect('login')

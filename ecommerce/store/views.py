@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse, request, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 import json
+from ecommerce import settings
 import datetime 
 from .models import *
 from users.models import *
@@ -10,6 +11,11 @@ from .utils import cookieCart, cartData, guestOrder
 # Create your views here.
 #rendering templates created
 def homepage(request):
+
+    if not request.session.has_key('currency'):
+        request.session['currency'] = settings.DEFAULT_CURRENCY
+
+    # setting = Setting.objects.get(pk=1)
     #linking the return values in cartData to models.py
     data = cartData(request)
     cartItems = data['cartItems']
@@ -27,6 +33,13 @@ def store(request):
     products = Product.objects.all()
     context = {'products':products, 'cartItems': cartItems, 'category':category}
     return render(request, 'store/store.html', context)
+
+# to keep details of the last currency chosen
+def selectcurrency(request):
+    lasturl = request.META.get('HTTP_REFERER')
+    if request.method == 'POST':  # check post
+        request.session['currency'] = request.POST['currency']
+    return HttpResponseRedirect(lasturl)
 
 # to show the full path of the catergory mptt and product details
 def category_products(request, id, slug):

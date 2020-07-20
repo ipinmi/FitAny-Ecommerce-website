@@ -1,4 +1,5 @@
 {% extends 'store/main.html' %}
+{% load currency %}
 <!-- Loading the static into the template then adding the link to the css file -->
 {% load static %}
 {% block content %}
@@ -39,7 +40,7 @@
         
                         <h4 class="font-weight-bold blue-text">
                             <!-- to display the price (subjected to change for currency converter`) -->
-                            <strong>N{{product.price|floatformat:2}}</strong>
+                            <strong>{{product.price|currency:request.session.currency|floatformat:2}} {{ request.session.currency }}</strong>
                         </h4>
 
                         <!-- class of updatecart and a custom attrubute called products to know which product was clicked -->

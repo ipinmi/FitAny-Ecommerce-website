@@ -1,4 +1,5 @@
 {% extends 'store/main.html' %}
+{% load currency %}
 <!-- Loading the static into the template then adding the link to the css file -->
 {% load static %}
 {% block content %}
@@ -163,14 +164,14 @@
                     <div class="cart-row">
                         <div style="flex:3"><img class="row-image" src="{{item.product.imageURL}}"></div>
                         <div style="flex:3"><p>{{item.product.name}}</p></div>
-                        <div style="flex:2"><p>N{{item.product.price|floatformat:2}}</p></div>
+                        <div style="flex:2"><p>{{item.product.price|currency:request.session.currency|floatformat:2}}  {{ request.session.currency }}</p></div>
                         <div style="flex:1"><p>x{{item.quantity}}</p></div>
-    
+                
                     </div>
                     {% endfor %}
                     <div>
                         <h5>Items:   {{order.get_cart_items}}</h5>
-                        <h5>Total:   N{{order.get_cart_total|floatformat:2}}</h5>
+                        <h5 id="amount">Total:   {{order.get_cart_total|currency:request.session.currency|floatformat:2}} {{ request.session.currency }}</h5>
     
                     </div>
     
@@ -290,12 +291,12 @@
                     console.log(error);
                 });
         }
-
         function payWithPaystack(){
           var handler = PaystackPop.setup({
-            key: 'pk_test_fc50b7dd5f942854674ea659c94772ae907381c0',
+            key: 'pk_live_4e320eb2431f748bdb0951b18dcce1c9fd5fb1c5',
             email: 'newuser@gmail.com',
-            amount: 10000,
+            amount: '{{order.get_cart_total}}',
+            currency: 'NGN',
             ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
             metadata: {
                custom_fields: [
@@ -306,12 +307,23 @@
                   }
                ]
             },
-            callback: function(response){
-                alert('success. transaction ref is ' + response.reference);
+            callback: function(response) {
+                //this happens after the payment is completed successfully
+                var reference = response.reference;
+                alert('Payment complete! Reference: ' + reference);
+                // Make an AJAX call to your server with the reference to verify the transaction
+                $.ajax({
+                    url: 'https://thriftstore20.herokuapp.com//verify_transaction?reference='+ response.reference,
+                    method: 'get',
+                    success: function (response) {
+                    // the transaction status is in response.data.status
+                    }
+                });
             },
-            onClose: function(){
-                alert('window closed');
-            }
+            onClose: function() {
+                alert('Transaction was not completed, window closed.');
+            },
+                
           });
           handler.openIframe();
         }
