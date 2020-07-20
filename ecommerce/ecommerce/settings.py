@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import django_heroku
+import dj_database_url 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +27,7 @@ SECRET_KEY = 'r_zq$k)c_np89xsu@@r)9o#b52#n#3pr-@3tl-zcfshme^$oxk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['thriftstore20.herokuapp.com/', '127.0.0.1']
+ALLOWED_HOSTS = ['thriftstore2.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
@@ -156,6 +157,9 @@ MEDIA_URL = '/images/'
 
 MEDIA_ROOT =os.path.join(BASE_DIR, 'static/images')
 
+#  Add configuration for static files storage using whitenoise
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 SITE_ID = 1
 
 ####################################
@@ -172,6 +176,9 @@ CKEDITOR_CONFIGS = {
         'toolbar': None,
     },
 }
+
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
  
 ###################################
 # Activate Django-Heroku.
