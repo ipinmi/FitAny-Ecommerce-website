@@ -24,7 +24,7 @@ jsonfield==2.1.1
 lazy-object-proxy==1.4.3
 mccabe==0.6.1
 oauthlib==3.1.0
-Pillow==7.1.2
+Pillow==8.3.2
 psycopg2==2.8.5
 pylint==2.5.3
 pylint-django==2.0.15
